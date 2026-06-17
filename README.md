@@ -1,4 +1,5 @@
-## GOAL: run kubernetes cluster + minikube:
+## GOAL: 
+    run kubernetes cluster + minikube with pods:
     1. pod A: PySpark - process local file into apache iceberg
     2. pod B: Airflow 3  - schedule the PySpark DAG work
 
