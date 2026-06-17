@@ -1,6 +1,6 @@
 ## GOAL: run kubernetes cluster + minikube:
-    1. pod 1: PySpark - process local file into apache iceberg
-    pod 2: Airflow 3 
+    1. pod A: PySpark - process local file into apache iceberg
+    2. pod B: Airflow 3  - schedule the PySpark DAG work
 
 ### system must be generic for working with any cloud platform, thus:
     * use MiniO for Object Storage for bucketing
