@@ -1,0 +1,18 @@
+# set MinIO values for my S3 bucket
+
+rootUser: "admin"
+rootPassword: "admin132"
+
+mode: standalone
+
+# set the objects the server will automatically create in deployment
+buckets:
+ - name: "lakehouse-bucket"
+   policy: public
+   purge: false
+
+# resource configuration
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"

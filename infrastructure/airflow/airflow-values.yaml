@@ -1,0 +1,22 @@
+# set airflow image
+defaultAirflowTag: "3.2.2"
+
+executor: "LocalExecutor"
+
+# cancel built-in examples
+config:
+  core:
+    load_examples: 'False'
+
+# set resource limits for scheduler, webserver and worker
+webserver:
+  resources:
+    requests:
+      cpu: "250m" # [CHECK] adjust as needed
+      memory: "512Mi"
+
+scheduler:
+  resources:
+    requests:
+      cpu: "250m" # [CHECK] adjust as needed
+      memory: "512Mi"

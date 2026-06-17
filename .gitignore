@@ -1,0 +1,19 @@
+# Data files
+*.csv
+*.parquet
+*.json
+
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+env/
+
+# Spark / Hadoop
+.ivy2/
+
+# IDEs & OS
+.vscode/
+.idea/
+.DS_Store
