@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script sets up a Kubernetes cluster using kind (Kubernetes in Docker).
+# This script sets up a Kubernetes cluster using minikube
 
 minikube delete # Clean up any existing minikube cluster
 

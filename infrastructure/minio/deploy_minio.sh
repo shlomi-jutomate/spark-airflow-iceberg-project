@@ -2,7 +2,7 @@
 
 echo "Deploying MinIO environment (Object Storage)..."
 
-# if not exists, add Helm repo
+# if not exists add Helm repo, then force update to get the latest charts
 helm repo add minio https://charts.min.io/ --force-update
 helm repo update
 

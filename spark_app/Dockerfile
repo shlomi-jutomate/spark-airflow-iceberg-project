@@ -1,4 +1,3 @@
-# use Bitnami
 FROM apache/spark:3.5.0-python3
 
 ENV HADOOP_USER_NAME=sparkuser

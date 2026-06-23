@@ -1,5 +1,7 @@
 import os
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession # main entry point for Spark functionality
+                                     # allows us to create DataFrames, register DataFrames as tables,
+                                     # execute SQL over tables, cache tables, and read parquet files.
 
 def main():
     print("Start PySpark Job for E-commerce Transactions file...")
@@ -8,7 +10,7 @@ def main():
     # Initialize SparkSession with Iceberg and MinIO (S3) configuration
     spark = SparkSession.builder \
     .appName("Iceberg-MinIO-Transactions-Job") \
-    .config("spark.sql.extentions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions") \
+    .config("spark.sql.extensions", "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions") \
     .config("spark.sql.catalog.local", "org.apache.iceberg.spark.SparkCatalog") \
     .config("spark.sql.catalog.local.type", "hadoop") \
     .config("spark.sql.catalog.local.warehouse", "s3a://lakehouse-bucket/warehouse") \
@@ -27,6 +29,9 @@ def main():
     csv_path = "file:///app/transactions_data.csv"
     print(f"Reading data from {csv_path}")
     
+    # in production we would use: '.option("mode, "failfast")' to fail the job and avoid corruption
+    # or use at least '.option("mode", "permissive")' to skip corrupted rows.
+    # but in any case, never use InferSchema in production + neer on semi-structured data.
     df = spark.read.option("header", "true") \
         .option("inferSchema", "true") \
         .csv(csv_path)
@@ -38,7 +43,6 @@ def main():
     table_name = "local.db.transactions"
     print(f"Writing data to Iceberg table: {table_name}...")
 
-    # [CHECK] not needed
     spark.sql("CREATE NAMESPACE IF NOT EXISTS local.db")
     # Using append mode for run the DAG multiple times and see data grows
     df.write.format("iceberg") \
