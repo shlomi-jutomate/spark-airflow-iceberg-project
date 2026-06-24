@@ -4,7 +4,8 @@
 minikube delete # Clean up any existing minikube cluster
 
 # Create a new kind cluster, specify resources for the cluster
-# [CHECK] what each argument does and adjust as necessary for your system
+# driver=docker: the cluster will run inside Docker containers
+# container-runtime=containerd: use containerd as the container runtime
 minikube start \
     --cpus=4 \
     --memory=8192 \
